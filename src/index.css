@@ -1,26 +1,30 @@
-html,
-body,
-root {
+
+body
+ {
   height: 100%;
   width: 100%;
+  margin: 0;
 }
 .navbar {
   display: flex;
   justify-content: flex-end;
-  padding: 10px;
   align-items: stretch;
   border-bottom: 1px solid gray;
 }
 .navbar-item {
   margin-right: 20px;
-  padding: 10px;
+  padding: 15px;
   font-size: 20px;
+  width: 90px;
+  text-align: center;
 }
-.navbar-item:last-child {
-  margin-right: 5%;
-  background-color: rgb(74, 165, 245);
-}
-.navbar-item:hover{
+
+.navbar-item:hover:not(.active){
   cursor: pointer;
   color: rgb(74, 165, 245);
+}
+.active{
+  background-color: rgb(74, 165, 245);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
