@@ -1,42 +1,58 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
-import {Routes, Route, useNavigate, Navigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
 
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Details from "./pages/Details";
+import ContactUs from "./pages/ContactUs";
+import { ACTIVE_SECTION_KEY, ROUTES } from "./constants";
+
+import "./App.css";
 
 function App() {
   const [activeSection, setActiveSection] = useState(0);
   const navigate = useNavigate();
 
   const SECTIONS = [
-    { id: 0, name: "Home" , path: "/"},
-    { id: 1, name: "About", path: "/about" },
-    { id: 2, name: "Details", path: "/details" },
-    { id: 3, name: "Contact us" , path: "/contact-us"},
+    { id: 0, name: "Home", path: ROUTES.HOME },
+    { id: 1, name: "About", path: ROUTES.ABOUT },
+    { id: 2, name: "Details", path: ROUTES.DETAILS },
+    { id: 3, name: "Contact us", path: ROUTES.CONTACT_US },
   ];
 
   const handleClickSection = (sectionId, path) => {
+    localStorage.setItem(ACTIVE_SECTION_KEY, sectionId);
     setActiveSection(sectionId);
     navigate(path);
-  }
+  };
+  useEffect(() => {
+    const activeSectionFromStorage = localStorage.getItem(ACTIVE_SECTION_KEY);
+    if (activeSectionFromStorage) {
+      setActiveSection(parseInt(activeSectionFromStorage, 10));
+    }
+  }, []);
 
   return (
     <>
       <div className="navbar">
         {SECTIONS.map((section) => (
-          <div key={section.id} className={`navbar-item ${activeSection == section.id ? `active` : ''}`}
-           onClick={()=> handleClickSection(section.id, section.path)}>
+          <div
+            key={section.id}
+            className={`navbar-item ${
+              activeSection == section.id ? `active` : ""
+            }`}
+            onClick={() => handleClickSection(section.id, section.path)}
+          >
             {section.name}
           </div>
         ))}
       </div>
       <Routes>
-        <Route path="/" element={<h1>Hello</h1>} />
-        <Route path="/about" element={<h1>About</h1>} />
-        <Route path="/details" element={<h1>Details</h1>} />
-        <Route path="/contact-us" element={<h1>Contact us</h1>} />
-        <Route path="*" element={<Navigate to="/" /> } />
+        <Route path={ROUTES.HOME} element={<Home />} />
+        <Route path={ROUTES.ABOUT} element={<About />} />
+        <Route path={ROUTES.DETAILS} element={<Details />} />
+        <Route path={ROUTES.CONTACT_US} element={<ContactUs />} />
+        <Route path="*" element={<Navigate to={ROUTES.HOME} />} />
       </Routes>
     </>
   );

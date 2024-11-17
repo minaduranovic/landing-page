@@ -1,6 +1,4 @@
-
-body
- {
+body {
   height: 100%;
   width: 100%;
   margin: 0;
@@ -19,12 +17,74 @@ body
   text-align: center;
 }
 
-.navbar-item:hover:not(.active){
+.navbar-item:hover:not(.active) {
   cursor: pointer;
   color: rgb(74, 165, 245);
 }
-.active{
+.active {
   background-color: rgb(74, 165, 245);
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+}
+.home-wrapper {
+  width: 50%;
+  height: 100%;
+  text-align: center;
+  padding: 20px;
+  margin: 20px auto;
+}
+.home-text {
+  text-align: justify;
+  font-size: 20px;
+}
+.home-text-wrapper {
+  border: 1px solid gray;
+  border-radius: 10px;
+  padding: 20px;
+}
+.about-content-wrapper {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.about-content-wrapper > .text {
+  font-size: 20px;
+  padding: 20px;
+}
+.about-content-wrapper > .image {
+  width: 50%;
+  height: 100%;
+}
+.carousel-wrapper {
+  width: 50%;
+  height: 100%;
+  margin: 20px auto;
+}
+.contact-card {
+  width: 50%;
+  height: 100%;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid gray;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.contact-card > input {
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid gray;
+}
+.message-input {
+  height: 200px;
+}
+.send-button {
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid gray;
+  background-color: rgb(74, 165, 245);
+  color: white;
 }
